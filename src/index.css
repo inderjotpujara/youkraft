@@ -5,9 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  background-color:rgba(75, 128, 182, 0.07);
+  --ok-button-color: #0074cc;
+  --ok-button-color-hover: #0a95ff;
 }

@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import { useReducer } from 'react';
 import './App.css';
+import Form from './form';
+import Table from './table';
+
+const initialData = []
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "NEW_DATA":
+      return [...state, action.payload]
+    case "RESET":
+      return []
+    default:
+      return state;
+  }
+};
 
 function App() {
+  const [data, dispatch] = useReducer(reducer, initialData);
+
+  const addNewData = (data) => {
+    dispatch({ type: "NEW_DATA", payload: data });
+  }
+
+  const clearData = () => {
+    dispatch({ type: "RESET" });
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form addNewData={addNewData} clearData={clearData}/>
+      <Table data={data}/>
     </div>
   );
 }
